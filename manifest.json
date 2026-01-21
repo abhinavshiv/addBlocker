@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Stoic Ad Blocker",
+  "version": "1.0",
+  "description": "Blocks ads on websites and replaces them with Stoic quotes (disabled on YouTube)",
+
+  "permissions": [
+    "declarativeNetRequest"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}
